@@ -33,11 +33,18 @@ static Bool npisrelative  = False;
         } \
 }
 
+static const char *ibanoncmd[] = {"sh", "-c",
+                                        "torify surf -e $0 "
+                                        "-a a -g -m -N -p -s -T "
+                                        "-c ~/.surf/tor-cookies.txt",
+                                  winid, NULL} ;
+
 #define MODKEY ControlMask
 static Key keys[] = {
 	/* modifier             key        function     argument */
 	{ MODKEY,               XK_Return, focusonce,   { 0 } },
 	{ MODKEY,               XK_Return, spawn,       { 0 } },
+	{ MODKEY|ShiftMask,     XK_Return, spawn,       {.v = ibanoncmd }},
 
 	{ MODKEY|ShiftMask,     XK_l,      rotate,      { .i = +1 } },
 	{ MODKEY|ShiftMask,     XK_h,      rotate,      { .i = -1 } },
